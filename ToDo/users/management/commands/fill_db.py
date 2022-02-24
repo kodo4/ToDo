@@ -1,10 +1,12 @@
-from django.core.management.base import BaseCommand
-from users.models import Users
-from django.contrib.auth.models import User
+import json
+import os
 
-import json, os
+from django.core.management.base import BaseCommand
+
+from users.models import Users
 
 JSON_PATH = 'users/json'
+
 
 def load_from_json(file_name):
     with open(os.path.join(JSON_PATH, file_name + '.json'), 'r') as infile:
@@ -20,6 +22,6 @@ class Command(BaseCommand):
             new_user = Users(**user)
             new_user.save()
 
-    super_user = User.objects.create_superuser('admin',
-                                               'admin@localhost.local',
-                                               'admin')
+        Users.objects.create_superuser(username='kodoch',
+                                       email='admin@localhost.local',
+                                       password='123123')
