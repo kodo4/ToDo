@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # my
     'users',
-    # others
     'Projectapp',
+    # others
     'rest_framework',
     'corsheaders',
     'django_filters',
