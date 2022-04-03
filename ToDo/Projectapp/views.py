@@ -1,11 +1,10 @@
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, permissions
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from .models import Project, ToDo
 from .serializers import ProjectModelSerializer, ToDoModelSerializer
 from .filters import ProjectFilter
-from rest_framework.generics import get_object_or_404
 
 
 class ProjectLimitOffsetPagination(LimitOffsetPagination):
@@ -13,6 +12,7 @@ class ProjectLimitOffsetPagination(LimitOffsetPagination):
 
 
 class ProjectModelViewSet(ModelViewSet):
+    permission_classes = [permissions.IsAuthenticated]
     queryset = Project.objects.all()
     serializer_class = ProjectModelSerializer
     pagination_class = ProjectLimitOffsetPagination
