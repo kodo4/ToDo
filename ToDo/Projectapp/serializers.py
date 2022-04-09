@@ -15,7 +15,8 @@ class ProjectModelSerializer(ModelSerializer):
 
     class Meta:
         model = Project
-        exclude = ['id']
+        # exclude = ['id']
+        fields = '__all__'
 
 
 class ToDoModelSerializer(ModelSerializer):
