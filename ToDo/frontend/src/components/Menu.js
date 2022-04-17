@@ -6,8 +6,8 @@ const Menu = ({is_authenticated, logout}) => {
         <nav className="two">
             <ul>
                 <li><Link to='/'>Users</Link></li>
-                <li><Link to='/project'>Projects</Link></li>
-                <li><Link to='/todo'>ToDo</Link></li>
+                <li><Link to='/projects'>Projects</Link></li>
+                <li><Link to='/todos'>ToDo</Link></li>
                 <li> {is_authenticated ? <Link onClick={logout}>Logout</Link> :<Link to='/login'>Login</Link>}
                 </li>
             </ul>

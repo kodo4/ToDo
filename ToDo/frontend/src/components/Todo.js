@@ -1,6 +1,7 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
-const ToDoItem = ({todo}) => {
+const ToDoItem = ({todo, deleteTodo}) => {
     return (
         <tr>
             <td>{todo.id}</td>
@@ -9,23 +10,28 @@ const ToDoItem = ({todo}) => {
             <td>{todo.created}</td>
             <td>{todo.updated}</td>
             <td>{todo.user.username}</td>
-            <td>{todo.is_active}</td>
+            <td>{todo.is_active ? <p>True</p>: <p>False</p>}</td>
+            <td><button type='button' onClick={()=>deleteTodo(todo.id)}>Not active</button></td>
         </tr>
     )
 }
 
-const ToDoList = ({todos}) => {
+const ToDoList = ({todos, deleteTodo}) => {
     return (
-        <table className="table">
-            <th>ID</th>
-            <th>PROJECT NAME</th>
-            <th>TEXT</th>
-            <th>CREATED</th>
-            <th>UPDATED</th>
-            <th>USER</th>
-            <th>ACTIVE</th>
-            {todos.map((todo) => <ToDoItem todo={todo}/>)}
-        </table>
+        <div>
+            <table className="table">
+                <th>ID</th>
+                <th>PROJECT NAME</th>
+                <th>TEXT</th>
+                <th>CREATED</th>
+                <th>UPDATED</th>
+                <th>USER</th>
+                <th>ACTIVE</th>
+                <th></th>
+                {todos.map((todo) => <ToDoItem todo={todo} deleteTodo={deleteTodo}/>)}
+            </table>
+            <Link to='/todos/create'>Create</Link>
+        </div>
     )
 }
 
